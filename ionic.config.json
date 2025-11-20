@@ -1,0 +1,7 @@
+{
+  "name": "Homes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
