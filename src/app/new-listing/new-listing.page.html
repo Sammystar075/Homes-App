@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Listing</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">New Listing</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list inset="true">
+    <ion-item>
+      <ion-label position="stacked">Property Title *</ion-label>
+      <ion-input [(ngModel)]="title" placeholder="e.g. 93 Priory Grove"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Full Address *</ion-label>
+      <ion-input [(ngModel)]="address" placeholder="e.g. 93 Priory Grove Dublin 4"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">County *</ion-label>
+      <ion-input [(ngModel)]="county" placeholder="e.g. Dublin"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Bedrooms</ion-label>
+      <ion-input [(ngModel)]="bedrooms" type="number" placeholder="e.g. 3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Price (€) *</ion-label>
+      <ion-input [(ngModel)]="price" type="number" placeholder="e.g. 350000"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea [(ngModel)]="description" rows="4" placeholder="Describe the property..."></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Image URL</ion-label>
+      <ion-input [(ngModel)]="imageUrl" placeholder="https://example.com/image.jpg"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="submitListing()">Create Listing</ion-button>
+    <ion-button expand="block" fill="outline" (click)="resetForm()">Clear Form</ion-button>
+  </div>
+</ion-content>

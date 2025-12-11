@@ -5,7 +5,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-`<!-- I used the ionic prefabricated assets from the documentation to add cards for each listing.-->
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -13,76 +13,81 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-card>
-  <img alt="Townhouse" src="https://designers.hubspot.com/hubfs/HubDB/house.jpeg" />
-  <ion-card-header>
-    <ion-card-title>93 Priory Grove</ion-card-title>
-    <ion-card-subtitle>Dublin 4</ion-card-subtitle>
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="ion-padding ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading listings...</p>
+  </div>
 
-  </ion-card-header>
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="ion-padding ion-text-center">
+    <p style="color: var(--ion-color-danger);">{{ error }}</p>
+    <ion-button (click)="loadListings()">Retry</ion-button>
+  </div>
 
-  <ion-card-content>
-    A beautiful american style detatched house with four bedrooms.
-  </ion-card-content>
+  <!-- Dynamic Listings from Firestore -->
+  <ion-card *ngFor="let listing of listings">
+    <img [alt]="listing.title" [src]="listing.imageUrl" />
+    <ion-card-header>
+      <ion-card-title>{{ listing.title }}</ion-card-title>
+      <ion-card-subtitle>{{ listing.county }}</ion-card-subtitle>
+    </ion-card-header>
 
+    <ion-card-content>
+      {{ listing.description }}
+    </ion-card-content>
 
+    <ion-button class="btnroute" [routerLink]="['/tabs/listing', listing.id]">View Details</ion-button>
+  </ion-card>
 
-<ion-button class="btnroute" routerLink="/tabs/listings/listing1">View Details</ion-button>
-<!-- this button uses a router module from @angular/route to reference the routes added in the tabs.routes file, so when it is clicked the full listing is displayed -->
-</ion-card>
+  <!-- Static Listings (existing - keep for backwards compatibility) -->
+  <!-- These will be migrated to Firestore using listingService.seedStaticListings() -->
+  <ng-container *ngIf="listings.length === 0 && !isLoading">
+    <ion-card>
+      <img alt="Townhouse" src="https://designers.hubspot.com/hubfs/HubDB/house.jpeg" />
+      <ion-card-header>
+        <ion-card-title>93 Priory Grove</ion-card-title>
+        <ion-card-subtitle>Dublin 4</ion-card-subtitle>
+      </ion-card-header>
 
-<ion-card>
-  <img alt="Townhouse" src="https://photos.zillowstatic.com/fp/f71358bb883a28ccdeac26d776748a8c-cc_ft_960.jpg" />
-  <ion-card-header>
-    <ion-card-title>14 Heathcliffe Close</ion-card-title>
-    <ion-card-subtitle>Dublin 18</ion-card-subtitle>
-  </ion-card-header>
+      <ion-card-content>
+        A beautiful american style detatched house with four bedrooms.
+      </ion-card-content>
 
-  <ion-card-content>
-A perfect retreat for when the work is all done, this offering is excactly what a new family or young couple are looking for.
-  </ion-card-content>
-  <ion-button class="btnroute" routerLink="/tabs/listings/listing2">View Details</ion-button>
-</ion-card>
+      <ion-button class="btnroute" routerLink="/tabs/listings/listing1">View Details</ion-button>
+    </ion-card>
 
-<ion-card>
-  <img alt="Rustic Cottage" src="https://uniqueirishhomes.ie/wp-content/uploads/Castle_view/160114-Sally-Nagle-185-scaled.webp" />
-  <ion-card-header>
-    <ion-card-title>Westfield Cottage</ion-card-title>
-    <ion-card-subtitle>Roundwood, Wicklow</ion-card-subtitle>
-  </ion-card-header>
+    <ion-card>
+      <img alt="Townhouse" src="https://photos.zillowstatic.com/fp/f71358bb883a28ccdeac26d776748a8c-cc_ft_960.jpg" />
+      <ion-card-header>
+        <ion-card-title>14 Heathcliffe Close</ion-card-title>
+        <ion-card-subtitle>Dublin 18</ion-card-subtitle>
+      </ion-card-header>
 
-  <ion-card-content>
-    A warm rustic cottage surrounded by the vast beauty Wicklow's hills have to offer.
-  </ion-card-content>
-   <ion-button class="btnroute" routerLink="/tabs/listings/listing3">View Details</ion-button>
-</ion-card>
+      <ion-card-content>
+        A perfect retreat for when the work is all done, this offering is exactly what a new family or young couple are looking for.
+      </ion-card-content>
+      <ion-button class="btnroute" routerLink="/tabs/listings/listing2">View Details</ion-button>
+    </ion-card>
 
-<ion-card>
-  <img alt="RCostal Lodge" src="https://www.nerinstitute.net/sites/default/files/images/house-countryside.jpg" />
-  <ion-card-header>
-    <ion-card-title>Whitmore Lodge</ion-card-title>
-    <ion-card-subtitle>Schull, Cork</ion-card-subtitle>
-  </ion-card-header>
+    <ion-card>
+      <img alt="Rustic Cottage" src="https://uniqueirishhomes.ie/wp-content/uploads/Castle_view/160114-Sally-Nagle-185-scaled.webp" />
+      <ion-card-header>
+        <ion-card-title>Westfield Cottage</ion-card-title>
+        <ion-card-subtitle>Roundwood, Wicklow</ion-card-subtitle>
+      </ion-card-header>
 
-  <ion-card-content>
-    A beautiful Holiday escape nestled in the heart of Ireland's sunny west coast, Complete with a stunning sea view.
-  </ion-card-content>
-</ion-card>
+      <ion-card-content>
+        A warm rustic cottage surrounded by the vast beauty Wicklow's hills have to offer.
+      </ion-card-content>
+      <ion-button class="btnroute" routerLink="/tabs/listings/listing3">View Details</ion-button>
+    </ion-card>
+  </ng-container>
 
-<ion-card>
-  <img alt="House" src="https://www.zillowstatic.com/bedrock/app/uploads/sites/47/agent-or-fsbo-shutterstock_398991412-f5be96.jpg" />
-  <ion-card-header>
-    <ion-card-title>93 Priory Grove</ion-card-title>
-    <ion-card-subtitle>Dublin 4</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-A Sophisticated and well connected townhouse, with close access to the Dublin's main trainline and many schools.
-  </ion-card-content>
-</ion-card>
-
-
-
-
-
+  <!-- Floating Action Button for New Listing -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/tabs/new-listing">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

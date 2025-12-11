@@ -1,6 +1,21 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
+/**
+ * Tabs Routes Configuration
+ * 
+ * ROUTE STRUCTURE:
+ * /login                    - Login page
+ * /tabs/tab1                - Home/Explore listings
+ * /tabs/tab2                - Tab 2
+ * /tabs/tab3                - Tab 3
+ * /tabs/new-listing         - Create new listing form
+ * /tabs/listing/:id         - Dynamic listing detail (from Firestore)
+ * /tabs/listings/listing1   - Static listing 1 (legacy)
+ * /tabs/listings/listing2   - Static listing 2 (legacy)
+ * /tabs/listings/listing3   - Static listing 3 (legacy)
+ * /tabs/listings/listing4   - Static listing 4 (legacy)
+ */
 export const routes: Routes = [
   {
     path: 'login',
@@ -27,7 +42,21 @@ export const routes: Routes = [
           import('../tab3/tab3.page').then((m) => m.Tab3Page),
       },
 
-      // routes for listings so tab1 buttons work
+      // New listing creation form
+      {
+        path: 'new-listing',
+        loadComponent: () =>
+          import('../new-listing/new-listing.page').then((m) => m.NewListingPage),
+      },
+
+      // Dynamic listing detail page (Firestore)
+      {
+        path: 'listing/:id',
+        loadComponent: () =>
+          import('../listing-detail/listing-detail.page').then((m) => m.ListingDetailPage),
+      },
+
+      // Legacy static listings (keep for backwards compatibility)
       {
         path: 'listings',
         children: [

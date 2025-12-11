@@ -1,0 +1,17 @@
+ion-list {
+  margin-top: 16px;
+}
+
+ion-item {
+  --padding-start: 16px;
+  margin-bottom: 8px;
+}
+
+ion-label[position="stacked"] {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+ion-button[fill="outline"] {
+  margin-top: 8px;
+}

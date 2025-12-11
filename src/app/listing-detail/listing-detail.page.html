@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ listing?.title || 'Loading...' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ listing?.title || 'Loading...' }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="ion-padding ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading listing...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="ion-padding ion-text-center">
+    <p style="color: var(--ion-color-danger);">{{ error }}</p>
+    <ion-button routerLink="/tabs/tab1">Back to Listings</ion-button>
+  </div>
+
+  <!-- Listing Content -->
+  <div *ngIf="listing && !isLoading">
+    <ion-img [alt]="listing.title" [src]="listing.imageUrl"></ion-img>
+
+    <ion-list inset="true">
+      <ion-item>
+        <ion-label>Address:</ion-label>
+        <ion-note slot="end">{{ listing.address }}</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Bedrooms:</ion-label>
+        <ion-note slot="end">{{ listing.bedrooms }}</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>County:</ion-label>
+        <ion-note slot="end">{{ listing.county }}</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Price:</ion-label>
+        <ion-note slot="end" style="font-size: larger;">€{{ listing.price | number }}</ion-note>
+      </ion-item>
+
+      <ion-item *ngIf="listing.description">
+        <ion-label class="ion-text-wrap">
+          <h3>Description</h3>
+          <p>{{ listing.description }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-button expand="block" (click)="bookNow()">Book now</ion-button>
+    </ion-list>
+  </div>
+</ion-content>
