@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>93 Priory Grove</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">93 Priory Grove</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-img alt="Townhouse" src="https://designers.hubspot.com/hubfs/HubDB/house.jpeg" />
+
+  <ion-list inset="true">
+    <ion-item>
+      <ion-label>Address:</ion-label>
+      <ion-note slot="end">93 Priory Grove Dublin 4</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Bedrooms:</ion-label>
+      <ion-note slot="end">5</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>County:</ion-label>
+      <ion-note slot="end">Dublin</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Price:</ion-label>
+      <ion-note slot="end" style="font-size: larger;">390,000</ion-note>
+    </ion-item>
+
+    <ion-button expand="block" (click)="bookNow()">Book now</ion-button>
+  </ion-list>
+</ion-content>

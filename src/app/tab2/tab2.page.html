@@ -5,13 +5,38 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+<!--this is just an examoke list containing user informaiton, this will be automatically populated from the direstore db in ca 2-->
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">My Profile</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-list inset="true">
+  <ion-item>
+    <ion-label>Username:</ion-label>
+    <ion-note slot="end">"Example-User"</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Firstname:</ion-label>
+    <ion-note slot="end">Joe</ion-note>
+  </ion-item>
+
+<ion-item>
+    <ion-label>Surname:</ion-label>
+    <ion-note slot="end">Schmoe</ion-note>
+</ion-item>
+
+<ion-item>
+    <ion-label>Email:</ion-label>
+    <ion-note slot="end">Schmoej@yahoo.com</ion-note>
+</ion-item>
+
+
+</ion-list>
+
+
+
 </ion-content>
