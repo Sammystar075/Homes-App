@@ -14,20 +14,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Loading State -->
-  <div *ngIf="isLoading" class="ion-padding ion-text-center">
-    <ion-spinner name="crescent"></ion-spinner>
-    <p>Loading listing...</p>
-  </div>
-
-  <!-- Error State -->
-  <div *ngIf="error && !isLoading" class="ion-padding ion-text-center">
-    <p style="color: var(--ion-color-danger);">{{ error }}</p>
-    <ion-button routerLink="/tabs/tab1">Back to Listings</ion-button>
-  </div>
-
-  <!-- Listing Content -->
-  <div *ngIf="listing && !isLoading">
+  <div *ngIf="listing">
     <ion-img [alt]="listing.title" [src]="listing.imageUrl"></ion-img>
 
     <ion-list inset="true">
@@ -52,13 +39,40 @@
       </ion-item>
 
       <ion-item *ngIf="listing.description">
-        <ion-label class="ion-text-wrap">
-          <h3>Description</h3>
-          <p>{{ listing.description }}</p>
-        </ion-label>
+        <ion-label class="ion-text-wrap">{{ listing.description }}</ion-label>
       </ion-item>
-
-      <ion-button expand="block" (click)="bookNow()">Book now</ion-button>
     </ion-list>
+
+    <!-- Google Map -->
+    <div class="map-container">
+      <div *ngIf="!mapLoaded" class="map-loading">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Loading map...</p>
+      </div>
+      
+      <google-map
+        *ngIf="mapLoaded"
+        [center]="{ lat: lat, lng: lng }"
+        [zoom]="zoom"
+        width="100%"
+        height="300px">
+        <map-marker
+          *ngIf="marker"
+          [position]="{ lat: marker.lat, lng: marker.lng }"
+          [label]="marker.label || ''"
+          [title]="listing.address"
+          (mapClick)="clickedMarker(marker.label)">
+        </map-marker>
+      </google-map>
+    </div>
+
+    <div class="ion-padding">
+      <ion-button expand="block" (click)="bookNow()">Book now</ion-button>
+    </div>
+  </div>
+
+  <div *ngIf="!listing" class="ion-padding ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading listing...</p>
   </div>
 </ion-content>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { GoogleMapsModule } from '@angular/google-maps';
 import {
   IonContent,
   IonHeader,
@@ -50,13 +51,22 @@ import firebase from 'firebase/compat/app';
     IonButtons,
     IonSpinner,
     CommonModule,
-    FormsModule
-  ]
+    FormsModule,
+    GoogleMapsModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ListingDetailPage implements OnInit {
   listing: Listing | null = null;
   isLoading: boolean = true;
   error: string | null = null;
+
+  // Map properties
+  zoom = 15;
+  lat = 53.3498; // Default: Dublin
+  lng = -6.2603;
+  marker: Marker | null = null;
+  mapLoaded = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -93,6 +103,8 @@ export class ListingDetailPage implements OnInit {
         
         if (!listing) {
           this.error = 'Listing not found';
+        } else if (listing.address) {
+          this.geocodeAddress(listing.address);
         }
       })
       .catch(error => {
@@ -100,6 +112,40 @@ export class ListingDetailPage implements OnInit {
         this.error = 'Failed to load listing: ' + error.message;
         this.isLoading = false;
       });
+  }
+
+  /**
+   * Convert address to coordinates using Google Geocoding API
+   */
+  geocodeAddress(address: string) {
+    const geocoder = new google.maps.Geocoder();
+    
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === 'OK' && results && results[0]) {
+        const location = results[0].geometry.location;
+        this.lat = location.lat();
+        this.lng = location.lng();
+        this.marker = {
+          lat: this.lat,
+          lng: this.lng,
+          label: 'A',
+          draggable: false
+        };
+        this.mapLoaded = true;
+        console.log('Geocoded address:', address, { lat: this.lat, lng: this.lng });
+      } else {
+        console.error('Geocode failed:', status);
+        // Show map at default location anyway
+        this.mapLoaded = true;
+      }
+    });
+  }
+
+  clickedMarker(label: string | undefined) {
+    console.log('Clicked marker:', label);
+    if (this.listing) {
+      alert('Property: ' + this.listing.title + '\n' + this.listing.address);
+    }
   }
 
   /**
@@ -131,4 +177,11 @@ export class ListingDetailPage implements OnInit {
         alert('Booking failed: ' + error.message);
       });
   }
+}
+
+interface Marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
 }
