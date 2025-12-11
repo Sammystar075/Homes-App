@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Explore Homes
-    </ion-title>
+    <ion-title>Explore Homes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -25,6 +23,12 @@
     <ion-button (click)="loadListings()">Retry</ion-button>
   </div>
 
+  <!-- Empty State -->
+  <div *ngIf="listings.length === 0 && !isLoading && !error" class="ion-padding ion-text-center">
+    <p>No listings yet. Be the first to add one!</p>
+    <ion-button routerLink="/tabs/new-listing">Add Listing</ion-button>
+  </div>
+
   <!-- Dynamic Listings from Firestore -->
   <ion-card *ngFor="let listing of listings">
     <img [alt]="listing.title" [src]="listing.imageUrl" />
@@ -39,50 +43,6 @@
 
     <ion-button class="btnroute" [routerLink]="['/tabs/listing', listing.id]">View Details</ion-button>
   </ion-card>
-
-  <!-- Static Listings (existing - keep for backwards compatibility) -->
-  <!-- These will be migrated to Firestore using listingService.seedStaticListings() -->
-  <ng-container *ngIf="listings.length === 0 && !isLoading">
-    <ion-card>
-      <img alt="Townhouse" src="https://designers.hubspot.com/hubfs/HubDB/house.jpeg" />
-      <ion-card-header>
-        <ion-card-title>93 Priory Grove</ion-card-title>
-        <ion-card-subtitle>Dublin 4</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content>
-        A beautiful american style detatched house with four bedrooms.
-      </ion-card-content>
-
-      <ion-button class="btnroute" routerLink="/tabs/listings/listing1">View Details</ion-button>
-    </ion-card>
-
-    <ion-card>
-      <img alt="Townhouse" src="https://photos.zillowstatic.com/fp/f71358bb883a28ccdeac26d776748a8c-cc_ft_960.jpg" />
-      <ion-card-header>
-        <ion-card-title>14 Heathcliffe Close</ion-card-title>
-        <ion-card-subtitle>Dublin 18</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content>
-        A perfect retreat for when the work is all done, this offering is exactly what a new family or young couple are looking for.
-      </ion-card-content>
-      <ion-button class="btnroute" routerLink="/tabs/listings/listing2">View Details</ion-button>
-    </ion-card>
-
-    <ion-card>
-      <img alt="Rustic Cottage" src="https://uniqueirishhomes.ie/wp-content/uploads/Castle_view/160114-Sally-Nagle-185-scaled.webp" />
-      <ion-card-header>
-        <ion-card-title>Westfield Cottage</ion-card-title>
-        <ion-card-subtitle>Roundwood, Wicklow</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content>
-        A warm rustic cottage surrounded by the vast beauty Wicklow's hills have to offer.
-      </ion-card-content>
-      <ion-button class="btnroute" routerLink="/tabs/listings/listing3">View Details</ion-button>
-    </ion-card>
-  </ng-container>
 
   <!-- Floating Action Button for New Listing -->
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
