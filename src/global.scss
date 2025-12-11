@@ -1,12 +1,8 @@
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
+ * Autumnal Theme - Cozy, Warm & Cute
+ * Rounded shapes, calm colors, cute accents
  */
 
 /* Core CSS required for Ionic components to work properly */
@@ -28,10 +24,272 @@
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
  */
-
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/* ============================================
+   GLOBAL ROUNDED SHAPES & AUTUMNAL STYLING
+   ============================================ */
+
+// Global border radius for rounded feel
+:root {
+  --border-radius-soft: 16px;
+  --border-radius-round: 24px;
+  --border-radius-pill: 50px;
+}
+
+// Cards - Soft rounded corners with subtle shadow
+ion-card {
+  --background: var(--ion-card-background);
+  border-radius: var(--border-radius-round) !important;
+  box-shadow: 0 4px 16px rgba(111, 64, 64, 0.12) !important;
+  overflow: hidden;
+  margin: 16px;
+  border: none;
+
+  img {
+    border-radius: var(--border-radius-soft) var(--border-radius-soft) 0 0;
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+  }
+
+  ion-card-header {
+    padding: 16px 20px 8px;
+  }
+
+  ion-card-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--ion-color-primary);
+  }
+
+  ion-card-subtitle {
+    color: var(--ion-color-secondary);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  ion-card-content {
+    padding: 8px 20px 16px;
+    color: var(--ion-text-color);
+    line-height: 1.5;
+  }
+}
+
+// Buttons - Pill shaped and friendly
+ion-button {
+  --border-radius: var(--border-radius-pill);
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --box-shadow: 0 4px 12px rgba(111, 64, 64, 0.2);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  margin: 8px;
+
+  &.btnroute {
+    --background: var(--ion-color-secondary);
+    --background-hover: var(--ion-color-secondary-shade);
+    --color: white;
+    margin: 12px 16px 16px;
+  }
+
+  &[fill="outline"] {
+    --border-width: 2px;
+    --box-shadow: none;
+  }
+
+  &[expand="block"] {
+    margin: 12px 16px;
+  }
+}
+
+// FAB button - Cute accent color
+ion-fab-button {
+  --background: var(--ion-color-tertiary);
+  --color: var(--ion-color-tertiary-contrast);
+  --box-shadow: 0 4px 16px rgba(238, 177, 213, 0.4);
+
+  &:hover {
+    --background: var(--ion-color-tertiary-shade);
+  }
+}
+
+// Toolbar - Rounded bottom
+ion-toolbar {
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+ion-header:not(.header-collapse-condense) ion-toolbar:last-of-type {
+  --border-radius: 0 0 var(--border-radius-soft) var(--border-radius-soft);
+}
+
+ion-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+// Lists - Rounded with soft backgrounds
+ion-list {
+  background: transparent !important;
+  
+  &[inset="true"] {
+    border-radius: var(--border-radius-round);
+    overflow: hidden;
+    margin: 16px;
+    box-shadow: 0 2px 12px rgba(111, 64, 64, 0.08);
+  }
+}
+
+ion-item {
+  --background: var(--ion-item-background);
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --inner-padding-end: 16px;
+  --min-height: 56px;
+  
+  &:last-child {
+    --border-width: 0;
+  }
+
+  ion-label {
+    font-weight: 500;
+  }
+
+  ion-note {
+    color: var(--ion-color-medium);
+    font-weight: 500;
+  }
+}
+
+// Input fields - Rounded
+ion-input, ion-textarea {
+  --padding-start: 16px !important;
+  --padding-end: 16px !important;
+  --border-radius: var(--border-radius-soft);
+  margin-top: 8px;
+}
+
+// Toggle - Cute pink accent
+ion-toggle {
+  --track-background: var(--ion-color-medium);
+  --track-background-checked: var(--ion-color-tertiary);
+  --handle-background: white;
+  --handle-background-checked: white;
+}
+
+// Tab bar - Rounded top
+ion-tab-bar {
+  --background: var(--ion-tab-bar-background);
+  border-radius: var(--border-radius-round) var(--border-radius-round) 0 0;
+  box-shadow: 0 -4px 16px rgba(111, 64, 64, 0.08);
+  padding-top: 8px;
+  border-top: none;
+}
+
+ion-tab-button {
+  --color: var(--ion-tab-bar-color);
+  --color-selected: var(--ion-tab-bar-color-selected);
+  
+  &.tab-selected {
+    ion-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  ion-icon {
+    font-size: 24px;
+    transition: transform 0.2s ease;
+  }
+
+  ion-label {
+    font-weight: 600;
+    font-size: 12px;
+  }
+}
+
+// Spinner - Theme colored
+ion-spinner {
+  --color: var(--ion-color-secondary);
+  width: 48px;
+  height: 48px;
+}
+
+// Back button
+ion-back-button {
+  --color: white;
+  --icon-font-size: 24px;
+}
+
+// Image styling
+ion-img {
+  border-radius: var(--border-radius-soft);
+  overflow: hidden;
+}
+
+// Content padding
+ion-content {
+  --padding-bottom: 100px; // Space for FAB and tab bar
+}
+
+// Cute decorative elements
+.cute-accent {
+  &::before {
+    content: '🍂';
+    margin-right: 8px;
+  }
+}
+
+.cute-heart {
+  &::after {
+    content: ' 💕';
+  }
+}
+
+// Map container styling
+.map-container {
+  margin: 16px;
+  border-radius: var(--border-radius-round);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(111, 64, 64, 0.12);
+}
+
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: var(--ion-color-light);
+  border-radius: var(--border-radius-round);
+}
+
+// Empty state styling
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  
+  ion-icon {
+    font-size: 64px;
+    color: var(--ion-color-tertiary);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    color: var(--ion-color-primary);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin-bottom: 24px;
+  }
+}
+
+// Smooth transitions
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
