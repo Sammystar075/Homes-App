@@ -217,9 +217,9 @@ ion-spinner {
   height: 48px;
 }
 
-// Back button
+// Back button - warm cream instead of white
 ion-back-button {
-  --color: white;
+  --color: #FDF6F0;
   --icon-font-size: 24px;
 }
 
@@ -292,4 +292,216 @@ ion-content {
 // Smooth transitions
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ============================================
+   RESPONSIVE LAYOUT - MOBILE & DESKTOP
+   ============================================ */
+
+// Mobile-first base styles (default)
+// Small devices (phones, less than 576px)
+ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+}
+
+// Container for centering content on larger screens
+.responsive-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+// Tablet breakpoint (576px and up)
+@media (min-width: 576px) {
+  ion-card {
+    margin: 16px auto;
+    max-width: 540px;
+  }
+
+  ion-list[inset="true"] {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .map-container {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .responsive-container {
+    max-width: 540px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  ion-content {
+    --padding-start: 24px;
+    --padding-end: 24px;
+  }
+
+  ion-card {
+    max-width: 720px;
+    
+    img {
+      height: 280px;
+    }
+  }
+
+  ion-list[inset="true"] {
+    max-width: 720px;
+  }
+
+  .map-container {
+    max-width: 720px;
+    height: 400px;
+  }
+
+  .responsive-container {
+    max-width: 720px;
+  }
+
+  ion-title {
+    font-size: 1.25rem;
+  }
+
+  // Larger touch targets on tablet
+  ion-button {
+    --padding-top: 14px;
+    --padding-bottom: 14px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  ion-content {
+    --padding-start: 48px;
+    --padding-end: 48px;
+  }
+
+  ion-card {
+    max-width: 960px;
+    
+    img {
+      height: 320px;
+    }
+
+    ion-card-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  ion-list[inset="true"] {
+    max-width: 800px;
+  }
+
+  .map-container {
+    max-width: 800px;
+    height: 450px;
+  }
+
+  .responsive-container {
+    max-width: 960px;
+  }
+
+  // Card grid layout for listings
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px;
+
+    ion-card {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  ion-content {
+    --padding-start: 64px;
+    --padding-end: 64px;
+  }
+
+  ion-card {
+    max-width: 1140px;
+    
+    img {
+      height: 360px;
+    }
+  }
+
+  .responsive-container {
+    max-width: 1140px;
+  }
+
+  // 3 column grid for listings on large screens
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1140px;
+  }
+
+  // Side padding for form elements
+  ion-list[inset="true"] {
+    max-width: 800px;
+  }
+}
+
+// Desktop-specific enhancements
+@media (hover: hover) and (pointer: fine) {
+  // Hover effects only for mouse devices
+  ion-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(111, 64, 64, 0.18) !important;
+    }
+  }
+
+  ion-button {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  ion-fab-button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(238, 177, 213, 0.5);
+    }
+  }
+
+  ion-item {
+    transition: background-color 0.15s ease;
+    
+    &:hover {
+      --background: rgba(111, 64, 64, 0.04);
+    }
+  }
+}
+
+// Print styles
+@media print {
+  ion-tab-bar,
+  ion-fab,
+  ion-back-button {
+    display: none !important;
+  }
+
+  ion-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #E8DFD6;
+  }
 }

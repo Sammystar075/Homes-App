@@ -15,16 +15,16 @@
   // Primary - Warm Burgundy
   --ion-color-primary: #6F4040;
   --ion-color-primary-rgb: 111, 64, 64;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-contrast: #FDF6F0;
+  --ion-color-primary-contrast-rgb: 253, 246, 240;
   --ion-color-primary-shade: #613838;
   --ion-color-primary-tint: #7d5353;
 
   // Secondary - Terracotta Orange
   --ion-color-secondary: #CC7543;
   --ion-color-secondary-rgb: 204, 117, 67;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-contrast: #FDF6F0;
+  --ion-color-secondary-contrast-rgb: 253, 246, 240;
   --ion-color-secondary-shade: #b4673b;
   --ion-color-secondary-tint: #d18356;
 
@@ -39,24 +39,24 @@
   // Success - Sage Green
   --ion-color-success: #41C44C;
   --ion-color-success-rgb: 65, 196, 76;
-  --ion-color-success-contrast: #ffffff;
-  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-contrast: #FDF6F0;
+  --ion-color-success-contrast-rgb: 253, 246, 240;
   --ion-color-success-shade: #39ac43;
   --ion-color-success-tint: #54ca5e;
 
   // Warning - Warm Amber
   --ion-color-warning: #E8A849;
   --ion-color-warning-rgb: 232, 168, 73;
-  --ion-color-warning-contrast: #000000;
-  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-contrast: #3D2A2A;
+  --ion-color-warning-contrast-rgb: 61, 42, 42;
   --ion-color-warning-shade: #cc9440;
   --ion-color-warning-tint: #eab15b;
 
   // Danger - Coral Red
   --ion-color-danger: #C4414C;
   --ion-color-danger-rgb: 196, 65, 76;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-contrast: #FDF6F0;
+  --ion-color-danger-contrast-rgb: 253, 246, 240;
   --ion-color-danger-shade: #ac3943;
   --ion-color-danger-tint: #ca545e;
 
@@ -71,16 +71,16 @@
   // Medium - Warm Gray
   --ion-color-medium: #9B8A7A;
   --ion-color-medium-rgb: 155, 138, 122;
-  --ion-color-medium-contrast: #ffffff;
-  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-contrast: #FDF6F0;
+  --ion-color-medium-contrast-rgb: 253, 246, 240;
   --ion-color-medium-shade: #88796b;
   --ion-color-medium-tint: #a59687;
 
   // Dark - Deep Brown
   --ion-color-dark: #3D2A2A;
   --ion-color-dark-rgb: 61, 42, 42;
-  --ion-color-dark-contrast: #ffffff;
-  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-contrast: #FDF6F0;
+  --ion-color-dark-contrast-rgb: 253, 246, 240;
   --ion-color-dark-shade: #362525;
   --ion-color-dark-tint: #503f3f;
 
@@ -94,18 +94,25 @@
 
   // Toolbar
   --ion-toolbar-background: #6F4040;
-  --ion-toolbar-color: #ffffff;
+  --ion-toolbar-color: #FDF6F0;
 
-  // Card styling
-  --ion-card-background: #ffffff;
+  // Card styling - Warm off-white instead of true white
+  --ion-card-background: #FAF5EF;
 
-  // Item styling
-  --ion-item-background: #ffffff;
+  // Item styling - Warm off-white instead of true white
+  --ion-item-background: #FAF5EF;
 
   // Tab bar
   --ion-tab-bar-background: #FDF6F0;
   --ion-tab-bar-color: #9B8A7A;
   --ion-tab-bar-color-selected: #6F4040;
+
+  // Border color - soft warm tone
+  --ion-border-color: #E8DFD6;
+
+  // Overlay/backdrop
+  --ion-backdrop-color: #3D2A2A;
+  --ion-backdrop-opacity: 0.4;
 }
 
 // Dark mode overrides
